@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+    <meta charSet='utf-8' />
+    <title>Initial Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <% if (assets.client.css) { %>
+      <link rel="stylesheet" href="<%= assets.client.css %>">
+    <% } %>
+
+    <% if (process.env.NODE_ENV === 'production') { %>
+      <script src="<%= assets.client.js %>" defer></script>
+    <% } else { %>
+      <script src="<%= assets.client.js %>" defer crossorigin></script>
+    <% } %>
+
+    <%# Load the initial state if it exists %>
+    <% if (reduxState) { %>
+      <script>
+       window.__initialState__=<%- JSON.stringify(reduxState) %>
+      </script>
+    <% } %>
+        
+  </head>
+  <body>
+    <div id="app__root">
+      <%- markup %>
+    </div>
+  </body>
+</html>
