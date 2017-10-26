@@ -1,6 +1,6 @@
 import { yellow, blue, red, bold, grey } from 'chalk'
-
 const isProduction = process.env.NODE_ENV === 'production'
+
 const logTrace = (ctx, key, { time, msg }) => console.log(`${grey(time.toISOString())} ${yellow('trace')} - ${blue(key)} - +${time - ctx.trace[key][0].time}ms ${msg}`)
 const logError = ({ time, msg }) => console.log(`${grey(time.toISOString())} ${red('error')} - ${msg}`)
 
