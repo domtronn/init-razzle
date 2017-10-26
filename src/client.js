@@ -1,10 +1,8 @@
-import App from './App'
-import React from 'react'
-import { hydrate } from 'react-dom'
+/** @jsx h */
+import { h, render } from 'preact'
+import App from './app'
 
-hydrate(
-  <App />,
-  document.getElementById('app__root')
-)
+let renderApp = () => render(<App />, document.body, document.body.firstElementChild)
+renderApp()
 
-if (module.hot) { module.hot.accept() }
+if (module.hot) { module.hot.accept('./app', renderApp) }

@@ -1,5 +1,6 @@
+/** @jsx h */
+import { h } from 'preact'
 import './main.css'
-import React from 'react'
 
 import HueRotateTitle from './hue-rotate-title'
 

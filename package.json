@@ -11,7 +11,6 @@
   "dependencies": {
     "chalk": "^2.3.0",
     "classnames": "^2.2.5",
-    "ejs": "^2.5.7",
     "koa": "^2.3.0",
     "koa-cookie": "^1.0.0",
     "koa-helmet": "^3.2.0",
@@ -19,16 +18,16 @@
     "koa-requestid": "^2.0.1",
     "koa-router": "^7.2.1",
     "koa-static": "^4.0.1",
+    "preact": "^8.2.6",
+    "preact-redux": "^2.0.3",
+    "preact-render-to-string": "^3.7.0",
     "razzle": "^0.8.4",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-redux": "^5.0.6",
-    "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+    "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "eslint": "^4.9.0",
     "eslint-config-standard": "^10.2.1",
@@ -39,6 +38,7 @@
     "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-standard": "^3.0.1",
     "stylelint": "^8.2.0",
-    "stylelint-config-recommended": "^1.0.0"
+    "stylelint-config-recommended": "^1.0.0",
+    "webpack-bundle-analyzer": "^2.9.0"
   }
 }

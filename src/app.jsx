@@ -1,8 +1,9 @@
-import React from 'react'
+/** @jsx h */
+import { h } from 'preact'
 
 import reducer from './redux/reducer'
 import thunk from 'redux-thunk'
-import { Provider } from 'react-redux'
+import { Provider } from 'preact-redux'
 import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 

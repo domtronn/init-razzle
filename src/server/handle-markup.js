@@ -1,9 +1,10 @@
-import React from 'react'
-import { renderToString } from 'react-dom/server'
+/** @jsx h */
+import { h } from 'preact'
+import render from 'preact-render-to-string'
 
 import App from '../app'
 
 export default async (ctx, next) => {
-  ctx.markup = renderToString(<App isServer initialState={ctx.reduxState} />)
+  ctx.markup = render(<App isServer initialState={ctx.reduxState} />)
   return next()
 }
