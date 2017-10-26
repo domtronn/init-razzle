@@ -1,4 +1,6 @@
-export default async (ctx, next) => {
+import { green, grey } from 'chalk'
+
+export default (additionalKeys = []) => async (ctx, next) => {
   const time = new Date()
   const { id } = ctx.state
 
@@ -11,12 +13,10 @@ export default async (ctx, next) => {
   const res = { responseTime: +responseTime, length: +length, status: +status }
   const req = { method, path, time, host, upstream: false }
 
-  let err = { count: 0 }
-  if (ctx.errors) err = { count: ctx.errors.length, errors: ctx.errors }
-
+  const extras = additionalKeys.reduce((acc, key) => ctx[key] ? { ...acc, [key]: ctx[key] } : acc, {})
   const message = process.env.NODE_ENV === 'production'
-    ? JSON.stringify({ id, req, res, err })
-    : `${host} ${method} ${path} ${status} ${length} - ${responseTime} ms${ctx.errors ? ['\n'].concat(ctx.errors).join('\n') : ''}`
+    ? JSON.stringify({ id, req, res, ...extras })
+    : `${grey(new Date().toISOString())} ${green('log  ')} - ${host} ${method} ${path} ${status} ${length} - ${responseTime}ms`
 
   console.log(message)
 }

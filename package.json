@@ -9,6 +9,7 @@
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
+    "chalk": "^2.3.0",
     "classnames": "^2.2.5",
     "ejs": "^2.5.7",
     "koa": "^2.3.0",

@@ -24,7 +24,8 @@ app.use(requestId())
 
 router.get(['/status', '/metrics'], ctx => (ctx.body = `Everything's fine`))
 
-router.use(logger)
+router.use(logger([ 'errors', 'trace' ]))
+router.use(tracer())
 
 router.get('/*', template, assets, state, markup)
 router.get('/*', ctx => (ctx.body = render(ctx.template, { ...ctx, process })))
