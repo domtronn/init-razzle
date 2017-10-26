@@ -1,4 +1,4 @@
-import { green, grey } from 'chalk'
+import logger from './common-logger'
 
 export default (additionalKeys = []) => async (ctx, next) => {
   const time = new Date()
@@ -14,9 +14,8 @@ export default (additionalKeys = []) => async (ctx, next) => {
   const req = { method, path, time, host, upstream: false }
 
   const extras = additionalKeys.reduce((acc, key) => ctx[key] ? { ...acc, [key]: ctx[key] } : acc, {})
-  const message = process.env.NODE_ENV === 'production'
-    ? JSON.stringify({ id, req, res, ...extras })
-    : `${grey(new Date().toISOString())} ${green('log  ')} - ${host} ${method} ${path} ${status} ${length} - ${responseTime}ms`
 
-  console.log(message)
+  process.env.NODE_ENV === 'production'
+    ? logger.json({ id, req, res, ...extras })
+    : logger.log(`${host} ${method} ${path} ${status} ${length} - ${responseTime}ms`)
 }

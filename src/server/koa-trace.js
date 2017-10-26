@@ -1,8 +1,7 @@
-import { yellow, blue, red, bold, grey } from 'chalk'
-const isProduction = process.env.NODE_ENV === 'production'
+import { bold } from 'chalk'
+import logger from './common-logger'
 
-const logTrace = (ctx, key, { time, msg }) => console.log(`${grey(time.toISOString())} ${yellow('trace')} - ${blue(key)} - +${time - ctx.trace[key][0].time}ms ${msg}`)
-const logError = ({ time, msg }) => console.log(`${grey(time.toISOString())} ${red('error')} - ${msg}`)
+const isProduction = process.env.NODE_ENV === 'production'
 
 const toMessage = (obj) => {
   if (isProduction) return typeof obj === 'object' ? obj : { msg: obj }
@@ -18,7 +17,7 @@ export const trace = (ctx, key, trace) => {
   ctx.trace = { [key]: [], ...ctx.trace }
   ctx.trace[key] = ctx.trace[key].concat(result)
 
-  !isProduction && logTrace(ctx, key, result)
+  !isProduction && logger.trace(ctx, key, result)
 }
 
 export const traceError = (ctx, err) => {
@@ -26,7 +25,7 @@ export const traceError = (ctx, err) => {
 
   ctx.errors = [ ...ctx.errors || [], result ]
 
-  !isProduction && logError(result)
+  !isProduction && logger.error(result)
 }
 
 export default () => async (ctx, next) => {
