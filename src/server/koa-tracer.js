@@ -3,6 +3,7 @@ import logger from './common-logger'
 
 const isProduction = process.env.NODE_ENV === 'production'
 
+const path = (path, obj) => path.reduce((acc, it) => acc && acc[it], obj)
 const toMessage = (obj) => {
   if (isProduction) return typeof obj === 'object' ? obj : { msg: obj }
 
@@ -11,7 +12,6 @@ const toMessage = (obj) => {
     : { msg: obj }
 }
 
-const path = (path, obj) => path.reduce((acc, it) => acc && acc[it], obj)
 export const trace = (ctx, key, trace) => {
   const result = {
     time: new Date(),
@@ -38,5 +38,9 @@ export const traceError = (ctx, err) => {
 export default () => async (ctx, next) => {
   ctx.state = { ...ctx.state, trace: {}, traceStart: new Date() }
   ctx.state = { ...ctx.state, errors: [], errorsCount: 0 }
+
+  ctx.trace = trace.bind({}, ctx)
+  ctx.error = traceError.bind({}, ctx)
+
   await next()
 }
