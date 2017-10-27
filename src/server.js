@@ -12,7 +12,7 @@ import markup from './server/handle-markup'
 import state from './server/handle-initial-state'
 
 import logger from './server/koa-logger'
-import tracer from './server/koa-trace'
+import tracer from './server/koa-tracer'
 
 import { render } from 'ejs'
 

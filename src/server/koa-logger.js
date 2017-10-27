@@ -17,5 +17,5 @@ export default (additionalKeys = []) => async (ctx, next) => {
 
   process.env.NODE_ENV === 'production'
     ? logger.json({ id, req, res, ...extras })
-    : logger.log(`${host} ${method} ${path} ${status} ${length} - ${responseTime}ms`)
+    : logger.log(ctx, `${host} ${method} ${path} ${status} ${length} - ${responseTime}ms`)
 }
