@@ -37,13 +37,12 @@ router.get('/timeout', ctx => new Promise(resolve => setTimeout(resolve, 3000)))
 router.get('/*', template, assets, state, markup)
 router.get('/*', ctx => {
   ctx.trace('RENDER', { msg: 'Begin Rendering' })
-  const result = render(ctx.template, { ...ctx, process })
-  ctx.trace('RENDER', { msg: 'Render Complete', size: result.length })
-
-  ctx.body = render(result)
+  ctx.body = render(ctx.template, { ...ctx, process })
+  ctx.trace('RENDER', { msg: 'Render Complete' })
 })
 
-app.use(compose([error(), serve(process.env.RAZZLE_PUBLIC_DIR), helmet(), cookie(), requestId(), timeout(3000)]))
+app.use(serve(process.env.RAZZLE_PUBLIC_DIR))
+app.use(compose([error(), helmet(), cookie(), requestId(), timeout(3000)]))
 
 app.on(eventAccess, Logger.log)
 app.on(eventTrace, Logger.trace)
