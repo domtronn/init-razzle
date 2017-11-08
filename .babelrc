@@ -2,11 +2,6 @@
   "presets": ["razzle/babel"],
   "plugins": [
     "transform-runtime",
-    [
-      "transform-react-jsx",
-      {
-        "pragma": "h"
-      }
-    ]
+    ["transform-react-jsx",  {"pragma": "h"}]
   ]
 }
