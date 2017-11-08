@@ -1,6 +1,7 @@
 import Koa from 'koa'
 
 /* Koa libraries */
+import serve from 'koa-static'
 import Router from 'koa-router'
 import helmet from 'koa-helmet'
 import cookie from 'koa-cookie'
@@ -42,7 +43,7 @@ router.get('/*', ctx => {
   ctx.body = render(result)
 })
 
-app.use(compose([error(), helmet(), cookie(), requestId(), timeout(3000)]))
+app.use(compose([error(), serve(process.env.RAZZLE_PUBLIC_DIR), helmet(), cookie(), requestId(), timeout(3000)]))
 
 app.on(eventAccess, Logger.log)
 app.on(eventTrace, Logger.trace)
