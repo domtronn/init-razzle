@@ -1,6 +1,6 @@
 /** @jsx h */
 import { h } from 'preact'
-import './main.css'
+import './main.scss'
 
 import HueRotateTitle from './hue-rotate-title'
 

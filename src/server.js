@@ -5,7 +5,7 @@ import serve from 'koa-static'
 import Router from 'koa-router'
 import helmet from 'koa-helmet'
 import cookie from 'koa-cookie'
-import timeout from 'koa-timeout-v2'
+import timeout from './server/koa-timeout'
 import compose from 'koa-compose'
 import requestId from 'koa-requestid'
 
@@ -31,7 +31,7 @@ router.get(['/status', '/metrics', '/favicon.ico'], ctx => (ctx.body = `Everythi
 router.use(tracer())
 router.use(logger([ 'id', 'errorsCount', 'errors', 'trace' ]))
 
-router.get('/timeout', stop)
+router.get('/timeout')
 router.get('/timeout', ctx => new Promise(resolve => setTimeout(resolve, 3000)))
 
 router.get('/*', template, assets, state, markup)
@@ -42,7 +42,7 @@ router.get('/*', ctx => {
 })
 
 app.use(serve(process.env.RAZZLE_PUBLIC_DIR))
-app.use(compose([error(), helmet(), cookie(), requestId(), timeout(3000)]))
+app.use(compose([error(), timeout(1000), helmet(), cookie(), requestId()]))
 
 app.on(eventAccess, Logger.log)
 app.on(eventTrace, Logger.trace)

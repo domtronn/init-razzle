@@ -23,6 +23,7 @@
     "koa-static": "^4.0.1",
     "koa-timeout-v2": "^1.0.0",
     "koa-tracer": "github:uswitch/koa-tracer",
+    "node-sass": "^4.7.2",
     "preact": "^8.2.6",
     "preact-redux": "^2.0.3",
     "preact-render-to-string": "^3.7.0",
@@ -30,6 +31,7 @@
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0",
+    "sass-loader": "^6.0.6",
     "styled-components": "^2.2.2"
   },
   "devDependencies": {
