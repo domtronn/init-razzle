@@ -1,9 +1,4 @@
-h1.title__huerotate {
-  font-weight: 100;
-  font-size: 6em;
-}
-
-.title__huerotate
+h1.title__huerotate
 {
   color: #f35626;
   background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
@@ -11,14 +6,22 @@ h1.title__huerotate {
   -webkit-font-smoothing: antialiased;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  &--animate
+  {
+    -webkit-animation: hue 60s infinite linear;
+  }
+  
+  h1&
+  
+  {
+    font-weight: 100;
+    font-size: 6em;
+  }
 }
 
-.title__huerotate--animate
+@keyframes hue
 {
-  -webkit-animation: hue 60s infinite linear;
-}
-
-@keyframes hue {
   0% { -webkit-filter: hue-rotate(0deg); }
   100% { -webkit-filter: hue-rotate(-360deg); }
 }
