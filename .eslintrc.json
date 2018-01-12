@@ -1,5 +1,6 @@
 {
   "extends": [ "standard", "standard-jsx", "plugin:jest/recommended" ],
   "plugins": [ "jest" ],
-  "env": { "browser": true, "commonjs": true, "node": true, "es6": true, "jest/globals": true }
+  "env": { "browser": true, "commonjs": true, "node": true, "es6": true, "jest/globals": true },
+  "settings": { "react": { "pragma": "h" } }
 }

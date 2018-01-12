@@ -11,12 +11,12 @@
   {
     -webkit-animation: hue 60s infinite linear;
   }
-  
-  h1 &
-  {
-    font-weight: 100;
-    font-size: 6em;
-  }
+}
+
+h1.title__huerotate
+{
+  font-weight: 100;
+  font-size: 6em;
 }
 
 @keyframes hue
