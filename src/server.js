@@ -1,7 +1,7 @@
 import Koa from 'koa'
 
 /* Koa libraries */
-import timeout from './server/koa-timeout'
+import timeout from './server/koa/timeout'
 
 import serve from 'koa-static'
 import Router from 'koa-router'
@@ -11,15 +11,15 @@ import compose from 'koa-compose'
 import requestId from 'koa-requestid'
 
 /* Middlewares */
-import template from './server/handle-template'
-import assets from './server/handle-assets'
-import markup from './server/handle-markup'
-import state from './server/handle-initial-state'
-import error from './server/handle-error'
+import template from './server/handlers/handle-template'
+import assets from './server/handlers/handle-assets'
+import markup from './server/handlers/handle-markup'
+import state from './server/handlers/handle-initial-state'
+import error from './server/handlers/handle-error'
 
+import Logger from './server/koa/logger'
 import logger, { eventAccess } from 'koa-logger'
 import tracer, { eventTrace, eventError } from 'koa-tracer'
-import Logger from './server/logger'
 
 import { render } from 'ejs'
 

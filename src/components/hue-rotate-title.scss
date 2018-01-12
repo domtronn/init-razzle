@@ -1,4 +1,4 @@
-h1.title__huerotate
+.title__huerotate
 {
   color: #f35626;
   background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
@@ -12,8 +12,7 @@ h1.title__huerotate
     -webkit-animation: hue 60s infinite linear;
   }
   
-  h1&
-  
+  h1 &
   {
     font-weight: 100;
     font-size: 6em;

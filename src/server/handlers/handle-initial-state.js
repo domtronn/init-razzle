@@ -1,6 +1,6 @@
 import { createStore } from 'redux'
-import { initAction } from '../redux/action-init'
-import reducer from '../redux/reducer'
+import { initAction } from '../../redux/action-init'
+import reducer from '../../redux/reducer'
 
 export default async (ctx, next) => {
   const store = createStore(reducer)
