@@ -32,6 +32,17 @@ module.exports = (base, { target, dev }, webpack) => {
       })
     })()
   })
+
+  config.resolve = Object.assign(
+    config.resolve,
+    {
+      alias: {
+        'react': 'preact-compat',
+        'react-dom': 'preact-compat',
+        'create-react-class': 'preact-compat/lib/create-react-class'
+      }
+    }
+  )
   
   !isServer && !dev && config.plugins.push(new ExtractTextPlugin('static/css/[name].[contenthash:8].css'))
 
