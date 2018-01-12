@@ -1,11 +1,12 @@
 import Koa from 'koa'
 
 /* Koa libraries */
+import timeout from './server/koa-timeout'
+
 import serve from 'koa-static'
 import Router from 'koa-router'
 import helmet from 'koa-helmet'
 import cookie from 'koa-cookie'
-import timeout from './server/koa-timeout'
 import compose from 'koa-compose'
 import requestId from 'koa-requestid'
 
@@ -15,7 +16,6 @@ import assets from './server/handle-assets'
 import markup from './server/handle-markup'
 import state from './server/handle-initial-state'
 import error from './server/handle-error'
-import stop from './server/handle-timeout'
 
 import logger, { eventAccess } from 'koa-logger'
 import tracer, { eventTrace, eventError } from 'koa-tracer'
@@ -26,7 +26,7 @@ import { render } from 'ejs'
 const app = new Koa()
 const router = new Router()
 
-router.get(['/status', '/metrics', '/favicon.ico'], ctx => (ctx.body = `Everything's fine`))
+router.get(['/status', '/favicon.ico'], ctx => (ctx.body = `Everything's fine`))
 
 router.use(tracer())
 router.use(logger([ 'id', 'errorsCount', 'errors', 'trace' ]))
