@@ -1,5 +1,6 @@
 const autoprefixer = require('autoprefixer')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const Jarvis = require('webpack-jarvis')
 
 module.exports = (base, { target, dev }, webpack) => {
   const config = Object.assign({}, base)
@@ -45,6 +46,7 @@ module.exports = (base, { target, dev }, webpack) => {
   )
   
   !isServer && !dev && config.plugins.push(new ExtractTextPlugin('static/css/[name].[contenthash:8].css'))
+  config.plugins.push(new Jarvis())
 
   return config
 }
