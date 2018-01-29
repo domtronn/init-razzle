@@ -1,6 +1,5 @@
 const autoprefixer = require('autoprefixer')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const Jarvis = require('webpack-jarvis')
 
 const addExclude = (rules, excludes) => rules
       .find(({ loader = '' }) => loader.includes('file-loader'))
