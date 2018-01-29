@@ -14,7 +14,6 @@
   "dependencies": {
     "chalk": "^2.3.0",
     "classnames": "^2.2.5",
-    "ejs": "^2.5.7",
     "koa": "^2.3.0",
     "koa-compose": "^4.0.0",
     "koa-cookie": "^1.0.0",
@@ -50,6 +49,7 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "sass-loader": "^6.0.6",
+    "ejs-compiled-loader": "^1.1.0",
     "stylelint": "^8.2.0",
     "stylelint-config-recommended": "^1.0.0",
     "webpack-jarvis": "^0.1.1"

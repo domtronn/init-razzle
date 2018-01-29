@@ -2,12 +2,17 @@ const autoprefixer = require('autoprefixer')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const Jarvis = require('webpack-jarvis')
 
+const addExclude = (rules, excludes) => rules
+      .find(({ loader = '' }) => loader.includes('file-loader'))
+      .exclude
+      .push(excludes)
+
 module.exports = (base, { target, dev }, webpack) => {
   const config = Object.assign({}, base)
   const isServer = target !== 'web'
 
   const loaders = {
-    sass: { loader: 'sass-loader' },
+    sass: { loader: 'sass-loader', options: { includePaths: [ './node_modules/ustyle/vendor/assets/stylesheets' ] } },
     css: { loader: 'css-loader',  options: { modules: false, sourceMap: true, minimize: true } },
     postCss: {
       loader: 'postcss-loader',
@@ -33,6 +38,9 @@ module.exports = (base, { target, dev }, webpack) => {
       })
     })()
   })
+
+  addExclude(config.module.rules, /\.ejs$/)
+  config.module.rules.push({ test: /\.ejs$/, loader: 'ejs-compiled-loader' })
 
   config.resolve = Object.assign(
     config.resolve,

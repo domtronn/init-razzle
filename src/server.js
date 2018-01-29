@@ -21,8 +21,6 @@ import Logger from './server/koa/logger'
 import logger, { eventAccess } from 'koa-logger'
 import tracer, { eventTrace, eventError } from 'koa-tracer'
 
-import { render } from 'ejs'
-
 const app = new Koa()
 const router = new Router()
 
@@ -37,7 +35,7 @@ router.get('/timeout', ctx => new Promise(resolve => setTimeout(resolve, 3000)))
 router.get('/*', template, assets, state, markup)
 router.get('/*', ctx => {
   ctx.trace('RENDER', { msg: 'Begin Rendering' })
-  ctx.body = render(ctx.template, { ...ctx, process })
+  ctx.body = ctx.render({ ...ctx, process })
   ctx.trace('RENDER', { msg: 'Render Complete' })
 })
 

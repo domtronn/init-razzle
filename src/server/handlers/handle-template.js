@@ -1,7 +1,6 @@
-import { readFileSync } from 'fs'
-import { resolve } from 'path'
+import server from '../../server.template.ejs'
 
 export default async (ctx, next) => {
-  ctx.template = readFileSync(resolve(__dirname, '../../server.template.ejs'), 'utf-8')
+  ctx.render = server
   return next()
 }

@@ -12,11 +12,10 @@
 
     <% if (process.env.NODE_ENV === 'production') { %>
       <script src="<%= assets.client.js %>" defer></script>
-    <% } else { -%>
+    <% } else { %>
       <script src="<%= assets.client.js %>" defer crossorigin></script>
     <% } %>
 
-    <%# Load the initial state if it exists %>
     <% if (reduxState) { %>
       <script>
        window.__initialState__=<%- JSON.stringify(reduxState) %>
