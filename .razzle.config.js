@@ -1,13 +1,12 @@
+const bindMods = require('./.razzle.modifications.js')
+
 const autoprefixer = require('autoprefixer')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-const addExclude = (rules, excludes) => rules
-      .find(({ loader = '' }) => loader.includes('file-loader'))
-      .exclude
-      .push(excludes)
-
 module.exports = (base, { target, dev }, webpack) => {
   const config = Object.assign({}, base)
+  const { addAlias, addExclude, addPlugin, addRule } = bindMods(config)
+
   const isServer = target !== 'web'
 
   const loaders = {
@@ -25,7 +24,9 @@ module.exports = (base, { target, dev }, webpack) => {
     }
   }
 
-  config.module.rules.push({
+  addExclude(/\.ejs$/)
+  addRule({ test: /\.ejs$/, loader: 'ejs-compiled-loader' })
+  addRule({
     test: /.scss$/,
     use: (() => {
       if (isServer) return [ loaders.css, loaders.sass, loaders.postCss ]
@@ -38,23 +39,15 @@ module.exports = (base, { target, dev }, webpack) => {
     })()
   })
 
-  addExclude(config.module.rules, /\.ejs$/)
-  config.module.rules.push({ test: /\.ejs$/, loader: 'ejs-compiled-loader' })
+  addAlias({
+    'react': 'preact-compat',
+    'react-dom': 'preact-compat',
+    'create-react-class': 'preact-compat/lib/create-react-class',
+    'koa-logger': '@uswitch/koa-logger',
+    'koa-tracer': '@uswitch/koa-tracer'
+  })
 
-  config.resolve = Object.assign(
-    config.resolve,
-    {
-      alias: {
-        'react': 'preact-compat',
-        'react-dom': 'preact-compat',
-        'create-react-class': 'preact-compat/lib/create-react-class',
-        'koa-logger': '@uswitch/koa-logger',
-        'koa-tracer': '@uswitch/koa-tracer'
-      }
-    }
-  )
-
-  !isServer && !dev && config.plugins.push(new ExtractTextPlugin('static/css/[name].[contenthash:8].css'))
+  !isServer && !dev && addPlugin(new ExtractTextPlugin('static/css/[name].[contenthash:8].css'))
 
   return config
 }
