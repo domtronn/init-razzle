@@ -31,7 +31,7 @@ module.exports = (base, { target, dev }, webpack) => {
     use: (() => {
       if (isServer) return [ loaders.css, loaders.sass, loaders.postCss ]
       if (dev) return ['style-loader', loaders.css, loaders.sass, loaders.postCss ]
-      
+
       return ExtractTextPlugin.extract({
         fallback: 'style-loader',
         use: [ { loader: 'css-loader', options: { importLoaders: 1 } }, loaders.postCss, loaders.sass ]
@@ -48,13 +48,14 @@ module.exports = (base, { target, dev }, webpack) => {
       alias: {
         'react': 'preact-compat',
         'react-dom': 'preact-compat',
-        'create-react-class': 'preact-compat/lib/create-react-class'
+        'create-react-class': 'preact-compat/lib/create-react-class',
+        'koa-logger': '@uswitch/koa-logger',
+        'koa-tracer': '@uswitch/koa-tracer'
       }
     }
   )
-  
+
   !isServer && !dev && config.plugins.push(new ExtractTextPlugin('static/css/[name].[contenthash:8].css'))
-  config.plugins.push(new Jarvis())
 
   return config
 }

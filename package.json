@@ -12,19 +12,19 @@
     "build": "razzle build"
   },
   "dependencies": {
+    "@uswitch/koa-logger": "^1.0.0",
+    "@uswitch/koa-tracer": "^1.0.0",
     "chalk": "^2.3.0",
     "classnames": "^2.2.5",
     "koa": "^2.3.0",
     "koa-compose": "^4.0.0",
     "koa-cookie": "^1.0.0",
     "koa-helmet": "^3.2.0",
-    "koa-logger": "github:uswitch/koa-logger",
     "koa-morgan": "^1.0.1",
     "koa-requestid": "^2.0.1",
     "koa-router": "^7.2.1",
     "koa-static": "^4.0.1",
     "koa-timeout-v2": "^1.0.0",
-    "koa-tracer": "github:uswitch/koa-tracer",
     "node-sass": "^4.7.2",
     "preact": "^8.2.6",
     "preact-compat": "^3.17.0",
@@ -40,6 +40,7 @@
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "cssnano": "^3.10.0",
+    "ejs-compiled-loader": "^1.1.0",
     "eslint": "^4.9.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-config-standard-preact": "^1.1.6",
@@ -49,9 +50,7 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "sass-loader": "^6.0.6",
-    "ejs-compiled-loader": "^1.1.0",
     "stylelint": "^8.2.0",
-    "stylelint-config-recommended": "^1.0.0",
-    "webpack-jarvis": "^0.1.1"
+    "stylelint-config-recommended": "^1.0.0"
   }
 }
