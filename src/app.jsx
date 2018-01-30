@@ -1,3 +1,4 @@
+import 'ustyle/dist/ustyle-latest.css'
 import { h } from 'preact'
 
 import reducer from './redux/reducer'

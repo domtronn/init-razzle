@@ -24,8 +24,9 @@ module.exports = (base, { target, dev }, webpack) => {
     }
   }
 
-  addExclude(/\.ejs$/)
+  addExclude(/\.ejs$/, /\.svg$/)
   addRule({ test: /\.ejs$/, loader: 'ejs-compiled-loader' })
+  addRule({ test: /\.svg$/, loader: 'raw-loader' })
   addRule({
     test: /.scss$/,
     use: (() => {

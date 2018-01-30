@@ -1,0 +1,19 @@
+$bordergrey: #f4f5f6;
+
+.calendar__cell
+{
+  width: (1 / 7) * 100%;
+  height: 80px;
+  
+  
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 40px;
+  
+  &--inactive
+  {
+    color: $bordergrey;
+  }
+}

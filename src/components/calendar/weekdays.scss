@@ -1,0 +1,13 @@
+.weekdays__day
+{
+  width: (1 / 7) * 100%;
+  display: inline-block;
+  text-align: center;
+
+  font-weight: 500;
+  
+  span
+  {
+    text-transform: uppercase;
+  }
+}

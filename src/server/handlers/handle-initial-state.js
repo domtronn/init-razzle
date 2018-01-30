@@ -1,5 +1,6 @@
 import { createStore } from 'redux'
-import { initAction } from '../../redux/action-init'
+import { loadMonth } from '../../redux/action-calendar'
+
 import reducer from '../../redux/reducer'
 
 export default async (ctx, next) => {
@@ -8,7 +9,8 @@ export default async (ctx, next) => {
 
   trace('INITIAL_STATE_LOAD', 'loadStarted')
   try {
-    store.dispatch(initAction())
+    store.dispatch(loadMonth(8))
+
     ctx.reduxState = store.getState()
   } catch (e) {
     error(e)

@@ -11,7 +11,6 @@ import compose from 'koa-compose'
 import requestId from 'koa-requestid'
 
 /* Middlewares */
-import template from './server/handlers/handle-template'
 import assets from './server/handlers/handle-assets'
 import markup from './server/handlers/handle-markup'
 import state from './server/handlers/handle-initial-state'
@@ -20,6 +19,9 @@ import error from './server/handlers/handle-error'
 import Logger from './server/koa/logger'
 import logger, { eventAccess } from 'koa-logger'
 import tracer, { eventTrace, eventError } from 'koa-tracer'
+
+import render from './server.template.ejs'
+import icons from 'ustyle/dist/icons.svg'
 
 const app = new Koa()
 const router = new Router()
@@ -32,10 +34,15 @@ router.use(logger([ 'id', 'errorsCount', 'errors', 'trace' ]))
 router.get('/timeout')
 router.get('/timeout', ctx => new Promise(resolve => setTimeout(resolve, 3000)))
 
-router.get('/*', template, assets, state, markup)
+router.get('/icons.svg', ctx => {
+  ctx.set('Content-Type', 'image/svg+xml')
+  ctx.body = icons
+})
+
+router.get('/*', assets, state, markup)
 router.get('/*', ctx => {
   ctx.trace('RENDER', { msg: 'Begin Rendering' })
-  ctx.body = ctx.render({ ...ctx, process })
+  ctx.body = render({ ...ctx, process })
   ctx.trace('RENDER', { msg: 'Render Complete' })
 })
 
