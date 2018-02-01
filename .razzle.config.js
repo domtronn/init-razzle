@@ -30,8 +30,8 @@ module.exports = (base, { target, dev }, webpack) => {
   addRule({
     test: /.scss$/,
     use: (() => {
-      if (isServer) return [ loaders.css, loaders.sass, loaders.postCss ]
-      if (dev) return ['style-loader', loaders.css, loaders.sass, loaders.postCss ]
+      if (isServer) return [ loaders.css, loaders.postCss, loaders.sass ]
+      if (dev) return ['style-loader', loaders.css, loaders.postCss, loaders.sass ]
 
       return ExtractTextPlugin.extract({
         fallback: 'style-loader',

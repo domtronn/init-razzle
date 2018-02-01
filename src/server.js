@@ -20,7 +20,7 @@ import Logger from './server/koa/logger'
 import logger, { eventAccess } from 'koa-logger'
 import tracer, { eventTrace, eventError } from 'koa-tracer'
 
-import render from './server.template.ejs'
+import template from './server.template.ejs'
 import icons from 'ustyle/dist/icons.svg'
 
 const app = new Koa()
@@ -41,9 +41,9 @@ router.get('/icons.svg', ctx => {
 
 router.get('/*', assets, state, markup)
 router.get('/*', ctx => {
-  ctx.trace('RENDER', { msg: 'Begin Rendering' })
-  ctx.body = render({ ...ctx, process })
-  ctx.trace('RENDER', { msg: 'Render Complete' })
+  ctx.trace('TEMPLATE', { msg: 'Begin Templating' })
+  ctx.body = template({ ...ctx, process })
+  ctx.trace('TEMPLATE', { msg: 'Templating Complete' })
 })
 
 app.use(serve(process.env.RAZZLE_PUBLIC_DIR))

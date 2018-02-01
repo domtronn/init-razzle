@@ -1,11 +1,21 @@
+@import "ustyle/basics/variables/_colors";
+
 .weekdays__day
 {
+  color: $c-typegrey;
+
+  &:nth-child(6),
+  &:nth-child(7)
+  {
+    color: $c-inputgrey;
+  }
+  
   width: (1 / 7) * 100%;
   display: inline-block;
   text-align: center;
 
   font-weight: 500;
-  
+
   span
   {
     text-transform: uppercase;

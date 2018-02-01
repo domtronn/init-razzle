@@ -1,7 +1,13 @@
+@import "ustyle/basics/variables/_colors";
+
 .calendarcontrol
 {
-  display: flex;
-  align-items: center;
+  margin-top: 5em;
+
+  svg
+  {
+    fill: $c-keylinegrey;
+  }
 
   &:hover
   {

@@ -1,0 +1,53 @@
+@import "ustyle/basics/variables/_colors";
+
+$active-color: $c-inputgrey;
+$hover-color: $c-inputgrey;
+$default-color: $c-keylinegrey;
+
+.minical
+{
+  width: 80px;
+  text-align: center;
+  margin: 1em;
+  display: inline-block;
+
+  &:hover { cursor: pointer }
+  
+  &--active &__month { color: $active-color; }
+  &:hover &__month { color: $hover-color; transition: color 0.1s ease-in-out; }
+  &__month
+  {
+    color: $default-color;
+    text-transform: uppercase;
+
+    transition: color 0.2s ease-in-out;
+  }
+
+  &__dots
+  {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    width: 80px;
+  }
+
+  &--active &__dot { background-color: $active-color; }
+  &:hover &__dot { background-color: $hover-color; transition: background-color 0.1s ease-in-out; }
+  &__dot
+  {
+    background-color: $default-color;
+    border-radius: 50%;
+
+    margin: 2px 4px;
+    width: 8px;
+    height: 8px;
+
+    transition: background-color 0.2s ease-in-out;
+    
+    &--hidden
+    {
+      opacity: 0;
+    }
+  }
+}

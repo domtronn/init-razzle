@@ -1,5 +1,6 @@
 import { createStore } from 'redux'
-import { loadMonth } from '../../redux/action-calendar'
+import { loadDate } from '../../redux/action-calendar'
+import { loadReminders } from '../../redux/action-reminders'
 
 import reducer from '../../redux/reducer'
 
@@ -9,7 +10,8 @@ export default async (ctx, next) => {
 
   trace('INITIAL_STATE_LOAD', 'loadStarted')
   try {
-    store.dispatch(loadMonth(8))
+    store.dispatch(loadDate(new Date()))
+    store.dispatch(loadReminders(require('../../../__data__/reminders.json')))
 
     ctx.reduxState = store.getState()
   } catch (e) {

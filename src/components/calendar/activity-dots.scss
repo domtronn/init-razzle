@@ -1,0 +1,19 @@
+@import "ustyle/basics/variables/_colors";
+
+.activitydots
+{
+  position: absolute;
+  display: inline-flex;
+  align-self: flex-end;
+
+  &__dot
+  {
+    width: 5px;
+    height: 5px;
+
+    margin: 0.05em;
+
+    border-radius: 50%;
+    background-color: $c-green;
+  }
+}
