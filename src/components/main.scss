@@ -28,3 +28,16 @@
   }
   
 }
+
+.summary
+{
+  &__container
+  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-size: 5em;
+    height: 1.5em;
+  }
+}

@@ -7,7 +7,7 @@ import cx from 'classnames'
 import { getMonthObj, getActive } from '../../redux/selector-calendar'
 import { setDate } from '../../redux/action-calendar'
 
-import ActivityDots from './activity-dots'
+import ActivityIndicator from './activity-dots'
 
 const CalendarCell = ({ setDate, active, date, day }) => {
   const exactDate = date.set({ day })
@@ -24,12 +24,10 @@ const CalendarCell = ({ setDate, active, date, day }) => {
       <div className={classNames}>
         {day && String(day).padStart(2, '0')}
       </div>
-      {[
-        <ActivityDots for={exactDate.toFormat('yyyy-MM-dd')} />,
-        <a className='calendar__cell--inverted' onclick={() => setDate(exactDate.toObject())} >
-          {day ? String(day).padStart(2, '0') : ''}
-        </a>
-      ]}
+      <ActivityIndicator for={exactDate.toFormat('yyyy-MM-dd')} />
+      <a className='calendar__cell--inverted' onclick={() => setDate(exactDate.toObject())} >
+        {day ? String(day).padStart(2, '0') : ''}
+      </a>
     </div>
   )
 }
